@@ -28,40 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAbrirImagem = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnEquacaoReta = new System.Windows.Forms.RadioButton();
             this.btnDDA = new System.Windows.Forms.RadioButton();
             this.btnPontoMedioRetas = new System.Windows.Forms.RadioButton();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnEquacaoCircunferencia = new System.Windows.Forms.RadioButton();
             this.btnTrigonometria = new System.Windows.Forms.RadioButton();
             this.btnPontoMedioCircunferencia = new System.Windows.Forms.RadioButton();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.btnPontoMedioElipse = new System.Windows.Forms.RadioButton();
             this.pictBoxImg1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnAbrirImagem
-            // 
-            this.btnAbrirImagem.Location = new System.Drawing.Point(5, 512);
-            this.btnAbrirImagem.Name = "btnAbrirImagem";
-            this.btnAbrirImagem.Size = new System.Drawing.Size(101, 23);
-            this.btnAbrirImagem.TabIndex = 106;
-            this.btnAbrirImagem.Text = "Abrir Imagem";
-            this.btnAbrirImagem.UseVisualStyleBackColor = true;
-            this.btnAbrirImagem.Click += new System.EventHandler(this.btnAbrirImagem_Click);
-            // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(112, 512);
+            this.btnLimpar.Location = new System.Drawing.Point(21, 606);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(101, 23);
+            this.btnLimpar.Size = new System.Drawing.Size(135, 28);
             this.btnLimpar.TabIndex = 107;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -69,37 +59,32 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.textBox1);
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.btnEquacaoReta);
             this.flowLayoutPanel1.Controls.Add(this.btnDDA);
             this.flowLayoutPanel1.Controls.Add(this.btnPontoMedioRetas);
-            this.flowLayoutPanel1.Controls.Add(this.textBox2);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.btnEquacaoCircunferencia);
             this.flowLayoutPanel1.Controls.Add(this.btnTrigonometria);
             this.flowLayoutPanel1.Controls.Add(this.btnPontoMedioCircunferencia);
-            this.flowLayoutPanel1.Controls.Add(this.textBox3);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.btnPontoMedioElipse);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 53);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 41);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(153, 244);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 353);
             this.flowLayoutPanel1.TabIndex = 108;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 111;
-            this.textBox1.Text = "Retas";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnEquacaoReta
             // 
             this.btnEquacaoReta.AutoSize = true;
-            this.btnEquacaoReta.Location = new System.Drawing.Point(3, 29);
+            this.btnEquacaoReta.Location = new System.Drawing.Point(14, 38);
+            this.btnEquacaoReta.Margin = new System.Windows.Forms.Padding(4);
             this.btnEquacaoReta.Name = "btnEquacaoReta";
-            this.btnEquacaoReta.Size = new System.Drawing.Size(109, 17);
+            this.btnEquacaoReta.Size = new System.Drawing.Size(134, 20);
             this.btnEquacaoReta.TabIndex = 1;
             this.btnEquacaoReta.TabStop = true;
             this.btnEquacaoReta.Text = "Equação da Reta";
@@ -109,9 +94,10 @@
             // btnDDA
             // 
             this.btnDDA.AutoSize = true;
-            this.btnDDA.Location = new System.Drawing.Point(3, 52);
+            this.btnDDA.Location = new System.Drawing.Point(14, 66);
+            this.btnDDA.Margin = new System.Windows.Forms.Padding(4);
             this.btnDDA.Name = "btnDDA";
-            this.btnDDA.Size = new System.Drawing.Size(48, 17);
+            this.btnDDA.Size = new System.Drawing.Size(57, 20);
             this.btnDDA.TabIndex = 2;
             this.btnDDA.TabStop = true;
             this.btnDDA.Text = "DDA";
@@ -121,30 +107,23 @@
             // btnPontoMedioRetas
             // 
             this.btnPontoMedioRetas.AutoSize = true;
-            this.btnPontoMedioRetas.Location = new System.Drawing.Point(3, 75);
+            this.btnPontoMedioRetas.Location = new System.Drawing.Point(14, 94);
+            this.btnPontoMedioRetas.Margin = new System.Windows.Forms.Padding(4);
             this.btnPontoMedioRetas.Name = "btnPontoMedioRetas";
-            this.btnPontoMedioRetas.Size = new System.Drawing.Size(85, 17);
+            this.btnPontoMedioRetas.Size = new System.Drawing.Size(104, 20);
             this.btnPontoMedioRetas.TabIndex = 3;
             this.btnPontoMedioRetas.TabStop = true;
             this.btnPontoMedioRetas.Text = "Ponto Médio";
             this.btnPontoMedioRetas.UseVisualStyleBackColor = true;
             this.btnPontoMedioRetas.CheckedChanged += new System.EventHandler(this.btnPontoMedioRetas_CheckedChanged);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(3, 98);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 112;
-            this.textBox2.Text = "Circunferência";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnEquacaoCircunferencia
             // 
             this.btnEquacaoCircunferencia.AutoSize = true;
-            this.btnEquacaoCircunferencia.Location = new System.Drawing.Point(3, 124);
+            this.btnEquacaoCircunferencia.Location = new System.Drawing.Point(14, 156);
+            this.btnEquacaoCircunferencia.Margin = new System.Windows.Forms.Padding(4);
             this.btnEquacaoCircunferencia.Name = "btnEquacaoCircunferencia";
-            this.btnEquacaoCircunferencia.Size = new System.Drawing.Size(139, 17);
+            this.btnEquacaoCircunferencia.Size = new System.Drawing.Size(171, 20);
             this.btnEquacaoCircunferencia.TabIndex = 113;
             this.btnEquacaoCircunferencia.TabStop = true;
             this.btnEquacaoCircunferencia.Text = "Equação Circunferência";
@@ -154,9 +133,10 @@
             // btnTrigonometria
             // 
             this.btnTrigonometria.AutoSize = true;
-            this.btnTrigonometria.Location = new System.Drawing.Point(3, 147);
+            this.btnTrigonometria.Location = new System.Drawing.Point(14, 184);
+            this.btnTrigonometria.Margin = new System.Windows.Forms.Padding(4);
             this.btnTrigonometria.Name = "btnTrigonometria";
-            this.btnTrigonometria.Size = new System.Drawing.Size(89, 17);
+            this.btnTrigonometria.Size = new System.Drawing.Size(112, 20);
             this.btnTrigonometria.TabIndex = 114;
             this.btnTrigonometria.TabStop = true;
             this.btnTrigonometria.Text = "Trigonometria";
@@ -166,30 +146,23 @@
             // btnPontoMedioCircunferencia
             // 
             this.btnPontoMedioCircunferencia.AutoSize = true;
-            this.btnPontoMedioCircunferencia.Location = new System.Drawing.Point(3, 170);
+            this.btnPontoMedioCircunferencia.Location = new System.Drawing.Point(14, 212);
+            this.btnPontoMedioCircunferencia.Margin = new System.Windows.Forms.Padding(4);
             this.btnPontoMedioCircunferencia.Name = "btnPontoMedioCircunferencia";
-            this.btnPontoMedioCircunferencia.Size = new System.Drawing.Size(85, 17);
+            this.btnPontoMedioCircunferencia.Size = new System.Drawing.Size(104, 20);
             this.btnPontoMedioCircunferencia.TabIndex = 115;
             this.btnPontoMedioCircunferencia.TabStop = true;
             this.btnPontoMedioCircunferencia.Text = "Ponto Médio";
             this.btnPontoMedioCircunferencia.UseVisualStyleBackColor = true;
             this.btnPontoMedioCircunferencia.CheckedChanged += new System.EventHandler(this.btnPontoMedioCircunferencia_CheckedChanged);
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(3, 193);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 113;
-            this.textBox3.Text = "Elipse";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnPontoMedioElipse
             // 
             this.btnPontoMedioElipse.AutoSize = true;
-            this.btnPontoMedioElipse.Location = new System.Drawing.Point(3, 219);
+            this.btnPontoMedioElipse.Location = new System.Drawing.Point(14, 274);
+            this.btnPontoMedioElipse.Margin = new System.Windows.Forms.Padding(4);
             this.btnPontoMedioElipse.Name = "btnPontoMedioElipse";
-            this.btnPontoMedioElipse.Size = new System.Drawing.Size(85, 17);
+            this.btnPontoMedioElipse.Size = new System.Drawing.Size(104, 20);
             this.btnPontoMedioElipse.TabIndex = 1;
             this.btnPontoMedioElipse.TabStop = true;
             this.btnPontoMedioElipse.Text = "Ponto Médio";
@@ -198,22 +171,58 @@
             // 
             // pictBoxImg1
             // 
-            this.pictBoxImg1.Location = new System.Drawing.Point(315, 25);
+            this.pictBoxImg1.Location = new System.Drawing.Point(420, 31);
+            this.pictBoxImg1.Margin = new System.Windows.Forms.Padding(4);
             this.pictBoxImg1.Name = "pictBoxImg1";
-            this.pictBoxImg1.Size = new System.Drawing.Size(746, 510);
+            this.pictBoxImg1.Size = new System.Drawing.Size(995, 628);
             this.pictBoxImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictBoxImg1.TabIndex = 110;
             this.pictBoxImg1.TabStop = false;
+            this.pictBoxImg1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictBoxImg1_MouseDown);
+            this.pictBoxImg1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictBoxImg1_MouseUp);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.label1.Size = new System.Drawing.Size(62, 34);
+            this.label1.TabIndex = 111;
+            this.label1.Text = "Retas";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 118);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.label2.Size = new System.Drawing.Size(146, 34);
+            this.label2.TabIndex = 116;
+            this.label2.Text = "Circunferência";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 236);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.label3.Size = new System.Drawing.Size(68, 34);
+            this.label3.TabIndex = 117;
+            this.label3.Text = "Elipse";
             // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1220, 608);
+            this.ClientSize = new System.Drawing.Size(1627, 748);
             this.Controls.Add(this.pictBoxImg1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnLimpar);
-            this.Controls.Add(this.btnAbrirImagem);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário Principal";
@@ -225,7 +234,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnAbrirImagem;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -233,13 +241,13 @@
         private System.Windows.Forms.RadioButton btnEquacaoReta;
         private System.Windows.Forms.RadioButton btnDDA;
         private System.Windows.Forms.RadioButton btnPontoMedioRetas;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.RadioButton btnPontoMedioElipse;
         private System.Windows.Forms.RadioButton btnEquacaoCircunferencia;
         private System.Windows.Forms.RadioButton btnTrigonometria;
         private System.Windows.Forms.RadioButton btnPontoMedioCircunferencia;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -151,5 +151,92 @@ namespace ProcessamentoImagens
             //unlock imagem destino
             imageBitmapDest.UnlockBits(bitmapDataDst);
         }
+
+
+        //------------------------------------------------------------------------
+        //--------- FILTROS -------------------------------------------
+        //------------------------------------------------------------------------
+        public static void bresenham(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
+        {
+
+            int width = imgBitmap.Width;
+            int height = imgBitmap.Height;
+            int pixelSize = 3;
+
+            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+
+            int declive;
+            int dx, dy, incE, incNE, d, x, y;
+
+            dy = Math.Abs(y2 - y1);
+            declive = (y2 >= y1) ? 1 : -1;
+
+            dx = x2 - x1;
+
+            unsafe
+            {
+                byte* origem = (byte*)img.Scan0.ToPointer();
+                byte* pixel;
+
+
+                // Constante de Bresenham 
+                incE = 2 * dy;
+                incNE = 2 * dy - 2 * dx;
+                d = 2 * dy - dx;
+                y = y1;
+                for (x = x1; x <= x2; x++)
+                {
+                    pixel = origem + y * img.Stride + x * pixelSize;
+                    pixel[0] = pixel[1] = pixel[2] = 0;
+
+                    if (d <= 0)
+                    {
+                        d += incE;
+                    }
+                    else
+                    {
+                        d += incNE;
+                        y += declive;
+                    }
+                }
+                
+            }
+            imgBitmap.UnlockBits(img);
+            
+            
+        }
+        public static void imagemBranca(Bitmap imgBitmap)
+        {
+            int width = imgBitmap.Width;
+            int height = imgBitmap.Height;
+            int pixelSize = 3;
+
+            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            unsafe
+            {
+                byte* origem = (byte*)img.Scan0.ToPointer();
+                byte* pixel;
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        pixel = origem + y * img.Stride + x * pixelSize;
+
+                        pixel[0] = 255;
+                        pixel[1] = 255;
+                        pixel[2] = 255;
+                    }
+                }
+
+
+            }
+            imgBitmap.UnlockBits(img);
+
+        }
     }
 }
