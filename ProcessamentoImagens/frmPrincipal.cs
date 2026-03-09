@@ -13,6 +13,7 @@ namespace ProcessamentoImagens
 
         private Point posInicial;
         private Point posFinal;
+        private bool addMode = false;
 
         public frmPrincipal()
         {
@@ -48,7 +49,21 @@ namespace ProcessamentoImagens
             posFinal = Point.Empty;
         }
 
-        
+        private void ControlarBotoes(bool flag)
+        {
+
+            btnEquacaoReta.Enabled = flag;
+            btnDDA.Enabled = flag;
+            btnPontoMedioRetas.Enabled = flag;
+
+            btnEquacaoCircunferencia.Enabled = flag;
+            btnTrigonometria.Enabled = flag;
+            btnPontoMedioCircunferencia.Enabled = flag;
+
+            btnPontoMedioElipse.Enabled = flag;
+            btnLimpar.Enabled = flag;
+            btnCancelar.Visible = !flag;
+        }
 
 
         //capturar posição mouse
@@ -109,6 +124,37 @@ namespace ProcessamentoImagens
             }
         }
 
-        
+        private void MudarBotaoADD(bool flag)
+        {
+            if (flag)
+            {
+                btnAddPoligono.BackColor = Color.Green;
+                btnAddPoligono.Text = "Confirmar";
+                btnAddPoligono.ForeColor = Color.White;
+            }
+            else
+            {
+                btnAddPoligono.BackColor = Color.White;
+                btnAddPoligono.Text = "Add Polígono";
+                btnAddPoligono.ForeColor = Color.Black;
+            }
+        }
+        private void btnAddPoligono_Click(object sender, EventArgs e)
+        {
+            addMode = !addMode;
+
+            ControlarBotoes(!addMode);
+            MudarBotaoADD(addMode);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            addMode = !addMode;
+
+            ControlarBotoes(!addMode);
+            MudarBotaoADD(addMode);
+
+            //limpar as estruturas
+        }
     }
 }
