@@ -102,7 +102,7 @@ namespace ProcessamentoImagens
                 //circunferências
                 if (btnEquacaoCircunferencia.Checked)
                 {
-                    //Filtros.circunferenciaEquacao(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
+                    Filtros.circunferenciaEquacao(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
                 }
                 else if (btnTrigonometria.Checked)
                 {
@@ -156,5 +156,6 @@ namespace ProcessamentoImagens
 
             //limpar as estruturas
         }
+
     }
 }

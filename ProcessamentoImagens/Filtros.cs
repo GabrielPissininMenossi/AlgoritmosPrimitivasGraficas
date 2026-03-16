@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace ProcessamentoImagens
 {
@@ -54,12 +55,92 @@ namespace ProcessamentoImagens
             imageBitmapDest.UnlockBits(bitmapDataDst);
         }
 
-       
+
 
 
         //------------------------------------------------------------------------
         //--------- FILTROS -------------------------------------------
         //------------------------------------------------------------------------
+        unsafe private static void PintaPixel(byte* src, int stride, int x, int y, int valor)
+        {
+            unsafe
+            {
+                byte* pixel;
+                pixel = src + y * stride + x * 3;
+                *(pixel++) = 0;
+                *(pixel++) = 0;
+                *(pixel++) = 0;
+            }
+
+
+
+        }
+        unsafe private static void  PontosCircunferencia(byte* src, int stride ,int x, int y, int xc, int yc, int valor)
+        {
+            PintaPixel(src, stride, xc + x, yc + y, valor);
+            PintaPixel(src, stride, xc + y, yc + x, valor);
+            PintaPixel(src, stride, xc - y, yc + x, valor);
+            PintaPixel(src, stride, xc - x, yc + y, valor);
+            PintaPixel(src, stride, xc - x, yc - y, valor);
+            PintaPixel(src, stride, xc - y, yc - x, valor);
+            PintaPixel(src, stride, xc + y, yc - x, valor);
+            PintaPixel(src, stride, xc + x, yc - y, valor);
+
+        }
+
+        public static void circunferenciaEquacao(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
+        {
+            int width = imgBitmap.Width;
+            int height = imgBitmap.Height;
+            int pixelSize = 3;
+
+            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int raio = (int)Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+           
+            unsafe
+            {
+
+                byte* src = (byte*)img.Scan0.ToPointer();
+                byte* pixel;
+                int x = 0;
+                int y = raio;
+                int d = 3 - 2 * raio;
+                while(x <= y)
+                {
+                    
+                    PontosCircunferencia(src, img.Stride, x, y, x1, y1, 0);
+
+                    if (d < 0)
+                    {
+                        d = d + 4 * x + 6;
+                        
+                    }
+                    else
+                    {
+                        d = d + 4 * (x - y) + 10;
+                        y--;
+                    }
+                    x++;
+                }
+                
+                   
+                
+
+            }
+            imgBitmap.UnlockBits(img);
+        }
+
+        private static int CalcularXfinal(int x1, int y1, int x2, int y2)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static int CalcularXinicial(int x1, int y1, int x2, int y2)
+        {
+            throw new NotImplementedException();
+        }
 
         public static void EquacaoReta(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
         {
