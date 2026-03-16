@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAbrirImagem = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -47,19 +46,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnAbrirImagem
-            // 
-            this.btnAbrirImagem.Location = new System.Drawing.Point(5, 512);
-            this.btnAbrirImagem.Name = "btnAbrirImagem";
-            this.btnAbrirImagem.Size = new System.Drawing.Size(101, 23);
-            this.btnAbrirImagem.TabIndex = 106;
-            this.btnAbrirImagem.Text = "Abrir Imagem";
-            this.btnAbrirImagem.UseVisualStyleBackColor = true;
-            this.btnAbrirImagem.Click += new System.EventHandler(this.btnAbrirImagem_Click);
-            // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(112, 512);
+            this.btnLimpar.Location = new System.Drawing.Point(16, 492);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(101, 23);
             this.btnLimpar.TabIndex = 107;
@@ -204,6 +193,8 @@
             this.pictBoxImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictBoxImg1.TabIndex = 110;
             this.pictBoxImg1.TabStop = false;
+            this.pictBoxImg1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictBoxImg1_MouseDown);
+            this.pictBoxImg1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictBoxImg1_MouseUp);
             // 
             // frmPrincipal
             // 
@@ -213,7 +204,6 @@
             this.Controls.Add(this.pictBoxImg1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnLimpar);
-            this.Controls.Add(this.btnAbrirImagem);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário Principal";
@@ -225,7 +215,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnAbrirImagem;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

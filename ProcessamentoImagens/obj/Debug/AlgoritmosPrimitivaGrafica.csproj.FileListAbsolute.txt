@@ -18,3 +18,13 @@ D:\7-Termo\CG\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\Algoritm
 D:\7-Termo\CG\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.CoreCompileInputs.cache
 D:\7-Termo\CG\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
 D:\7-Termo\CG\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csprojAssemblyReference.cache
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.frmPrincipal.resources
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.Properties.Resources.resources
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.GenerateResource.cache
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe.config
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe
+C:\Users\Aluno\Downloads\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.pdb
