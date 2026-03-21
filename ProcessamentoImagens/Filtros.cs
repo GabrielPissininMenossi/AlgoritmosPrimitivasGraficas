@@ -61,34 +61,32 @@ namespace ProcessamentoImagens
         //------------------------------------------------------------------------
         //--------- FILTROS -------------------------------------------
         //------------------------------------------------------------------------
-        unsafe private static void PintaPixel(byte* src, int stride, int x, int y, int valor)
+        unsafe private static void PintaPixel(byte* src, int stride, int width, int height, int x, int y, int valor)
         {
-            unsafe
+            if(x >= 0 && x < width && y >= 0 && y < height) //limitar no tamanho da imagem
             {
                 byte* pixel;
                 pixel = src + y * stride + x * 3;
-                *(pixel++) = 0;
-                *(pixel++) = 0;
-                *(pixel++) = 0;
+                *(pixel++) = (byte)valor;
+                *(pixel++) = (byte)valor;
+                *(pixel++) = (byte)valor;
             }
-
-
-
+           
         }
-        unsafe private static void  PontosCircunferencia(byte* src, int stride ,int x, int y, int xc, int yc, int valor)
+        unsafe private static void  PontosCircunferencia(byte* src, int stride, int width, int height, int x, int y, int xc, int yc, int valor)
         {
-            PintaPixel(src, stride, xc + x, yc + y, valor);
-            PintaPixel(src, stride, xc + y, yc + x, valor);
-            PintaPixel(src, stride, xc - y, yc + x, valor);
-            PintaPixel(src, stride, xc - x, yc + y, valor);
-            PintaPixel(src, stride, xc - x, yc - y, valor);
-            PintaPixel(src, stride, xc - y, yc - x, valor);
-            PintaPixel(src, stride, xc + y, yc - x, valor);
-            PintaPixel(src, stride, xc + x, yc - y, valor);
+            PintaPixel(src, stride, width, height, xc + x, yc + y, valor);
+            PintaPixel(src, stride, width, height, xc + y, yc + x, valor);
+            PintaPixel(src, stride, width, height, xc - y, yc + x, valor);
+            PintaPixel(src, stride, width, height, xc - x, yc + y, valor);
+            PintaPixel(src, stride, width, height, xc - x, yc - y, valor);
+            PintaPixel(src, stride, width, height, xc - y, yc - x, valor);
+            PintaPixel(src, stride, width, height, xc + y, yc - x, valor);
+            PintaPixel(src, stride, width, height, xc + x, yc - y, valor);
 
         }
 
-        public static void circunferenciaEquacao(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
+        public static void circunferenciaPontoMedio(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
         {
             int width = imgBitmap.Width;
             int height = imgBitmap.Height;
@@ -103,44 +101,100 @@ namespace ProcessamentoImagens
             {
 
                 byte* src = (byte*)img.Scan0.ToPointer();
-                byte* pixel;
+
                 int x = 0;
                 int y = raio;
                 int d = 3 - 2 * raio;
                 while(x <= y)
                 {
                     
-                    PontosCircunferencia(src, img.Stride, x, y, x1, y1, 0);
+                    PontosCircunferencia(src, img.Stride, width, height, x, y, x1, y1, 0);
 
                     if (d < 0)
                     {
-                        d = d + 4 * x + 6;
+                        d = d + 2 * x + 3;
                         
                     }
                     else
                     {
-                        d = d + 4 * (x - y) + 10;
+                        d = d + 2 * (x - y) + 5;
                         y--;
                     }
                     x++;
                 }
-                
-                   
-                
-
             }
             imgBitmap.UnlockBits(img);
         }
 
-        private static int CalcularXfinal(int x1, int y1, int x2, int y2)
+        public static void circunferenciaEquacao(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
         {
-            throw new NotImplementedException();
+            int width = imgBitmap.Width;
+            int height = imgBitmap.Height;
+
+            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite,PixelFormat.Format24bppRgb);
+
+            int raio = (int)Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+
+            unsafe
+            {
+                byte* src = (byte*)img.Scan0.ToPointer();
+
+                int x = 0;
+                int limite = (int)(raio / Math.Sqrt(2)); // até 45°, raio / raiz de 2
+
+                while (x <= limite)
+                {
+                    int y = (int)Math.Sqrt(raio * raio - x * x); // Raiz(R^2−𝑥^2)
+
+                    PontosCircunferencia(src, img.Stride, width, height, x, y, x1, y1, 0);
+
+                    x++;
+                }
+            }
+
+            imgBitmap.UnlockBits(img);
         }
 
-        private static int CalcularXinicial(int x1, int y1, int x2, int y2)
+        //utiliza as equações paramétricas da circunferência, onde o ângulo α varia de 0 a 2π
+        //permitindo calcular as coordenadas x e y a partir das funções cosseno e seno
+        public static void circunferenciaTrigonometria(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
         {
-            throw new NotImplementedException();
+            int width = imgBitmap.Width;
+            int height = imgBitmap.Height;
+
+            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            // raio da circunferência: distância entre o centro (x1,y1) e um ponto da borda (x2,y2)
+            // R = Raiz( (x2 - x1)^2 + (y2 - y1)^2 )
+            int raio = (int)Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+
+            unsafe
+            {
+                byte* src = (byte*)img.Scan0.ToPointer();
+
+                // Define o quanto o ângulo α aumenta a cada iteração
+                // Quanto menor, mais pontos -> círculo mais suave
+                double passo = 1.0 / raio;
+
+                // Percorre o ângulo α de 0 até 2*PI (360° em radianos)
+                for (double t = 0; t < 2 * Math.PI; t += passo)
+                {
+
+                    // y = R * sen(α) e x = R * cos(α)
+                    //transformam o ângulo α em coordenadas, cos e sen vão de - 1 a 1
+                    int x = (int)(raio * Math.Cos(t));
+                    int y = (int)(raio * Math.Sin(t)); 
+
+                    // Soma em x1 e y1 para deslocar a circunferência para o centro correto
+                    PintaPixel(src, img.Stride, width, height, x1 + x, y1 + y, 0);
+                }
+            }
+
+            imgBitmap.UnlockBits(img);
         }
+
 
         public static void EquacaoReta(Bitmap imgBitmap, int x1, int y1, int x2, int y2)
         {
@@ -206,7 +260,6 @@ namespace ProcessamentoImagens
                             if (px >= 0 && px < width && y >= 0 && y < height)
                             {
                                 pixel = origem + y * img.Stride + px * pixelSize;
-
                                 pixel[0] = pixel[1] = pixel[2] = 0;
                             }
                         }

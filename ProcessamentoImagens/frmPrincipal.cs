@@ -106,11 +106,11 @@ namespace ProcessamentoImagens
                 }
                 else if (btnTrigonometria.Checked)
                 {
-                    //Filtros.circunferenciaTrigonometria(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
+                    Filtros.circunferenciaTrigonometria(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
                 }
                 else if (btnPontoMedioCircunferencia.Checked)
                 {
-                    //Filtros.circunferenciaPontoMedio(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
+                    Filtros.circunferenciaPontoMedio(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
                 }
 
                 //elipses
