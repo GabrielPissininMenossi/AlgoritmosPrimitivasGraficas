@@ -32,20 +32,26 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnEquacaoReta = new System.Windows.Forms.RadioButton();
-            this.btnPontoMedioRetas = new System.Windows.Forms.RadioButton();
-            this.btnDDA = new System.Windows.Forms.RadioButton();
-            this.btnTrigonometria = new System.Windows.Forms.RadioButton();
-            this.btnPontoMedioCircunferencia = new System.Windows.Forms.RadioButton();
-            this.btnEquacaoCircunferencia = new System.Windows.Forms.RadioButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnPontoMedioElipse = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnPontoMedioCircunferencia = new System.Windows.Forms.RadioButton();
+            this.btnTrigonometria = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnPontoMedioRetas = new System.Windows.Forms.RadioButton();
+            this.btnEquacaoCircunferencia = new System.Windows.Forms.RadioButton();
+            this.btnEquacaoReta = new System.Windows.Forms.RadioButton();
+            this.btnDDA = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.pictBoxImg1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.listViewPoligono = new System.Windows.Forms.ListView();
             this.btnAddPoligono = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbVertices = new System.Windows.Forms.Label();
+            this.listViewVertices = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -72,16 +78,11 @@
             this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.lbVertices = new System.Windows.Forms.Label();
-            this.listViewVertices = new System.Windows.Forms.ListView();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).BeginInit();
             this.flowLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,7 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLimpar
@@ -119,56 +119,49 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(170, 338);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(170, 344);
             this.flowLayoutPanel1.TabIndex = 108;
             // 
-            // btnEquacaoReta
+            // groupBox6
             // 
-            this.btnEquacaoReta.AutoSize = true;
-            this.btnEquacaoReta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEquacaoReta.Location = new System.Drawing.Point(5, 79);
-            this.btnEquacaoReta.Name = "btnEquacaoReta";
-            this.btnEquacaoReta.Size = new System.Drawing.Size(109, 17);
-            this.btnEquacaoReta.TabIndex = 1;
-            this.btnEquacaoReta.TabStop = true;
-            this.btnEquacaoReta.Text = "Equação da Reta";
-            this.btnEquacaoReta.UseVisualStyleBackColor = true;
+            this.groupBox6.Controls.Add(this.btnPontoMedioElipse);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Controls.Add(this.btnPontoMedioCircunferencia);
+            this.groupBox6.Controls.Add(this.btnTrigonometria);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.btnPontoMedioRetas);
+            this.groupBox6.Controls.Add(this.btnEquacaoCircunferencia);
+            this.groupBox6.Controls.Add(this.btnEquacaoReta);
+            this.groupBox6.Controls.Add(this.btnDDA);
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Location = new System.Drawing.Point(11, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(150, 335);
+            this.groupBox6.TabIndex = 121;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Primitivas Gráficas";
             // 
-            // btnPontoMedioRetas
+            // btnPontoMedioElipse
             // 
-            this.btnPontoMedioRetas.AutoSize = true;
-            this.btnPontoMedioRetas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPontoMedioRetas.Location = new System.Drawing.Point(5, 125);
-            this.btnPontoMedioRetas.Name = "btnPontoMedioRetas";
-            this.btnPontoMedioRetas.Size = new System.Drawing.Size(85, 17);
-            this.btnPontoMedioRetas.TabIndex = 3;
-            this.btnPontoMedioRetas.TabStop = true;
-            this.btnPontoMedioRetas.Text = "Ponto Médio";
-            this.btnPontoMedioRetas.UseVisualStyleBackColor = true;
+            this.btnPontoMedioElipse.AutoSize = true;
+            this.btnPontoMedioElipse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPontoMedioElipse.Location = new System.Drawing.Point(6, 267);
+            this.btnPontoMedioElipse.Name = "btnPontoMedioElipse";
+            this.btnPontoMedioElipse.Size = new System.Drawing.Size(85, 17);
+            this.btnPontoMedioElipse.TabIndex = 1;
+            this.btnPontoMedioElipse.TabStop = true;
+            this.btnPontoMedioElipse.Text = "Ponto Médio";
+            this.btnPontoMedioElipse.UseVisualStyleBackColor = true;
             // 
-            // btnDDA
+            // label6
             // 
-            this.btnDDA.AutoSize = true;
-            this.btnDDA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDDA.Location = new System.Drawing.Point(5, 102);
-            this.btnDDA.Name = "btnDDA";
-            this.btnDDA.Size = new System.Drawing.Size(48, 17);
-            this.btnDDA.TabIndex = 2;
-            this.btnDDA.TabStop = true;
-            this.btnDDA.Text = "DDA";
-            this.btnDDA.UseVisualStyleBackColor = true;
-            // 
-            // btnTrigonometria
-            // 
-            this.btnTrigonometria.AutoSize = true;
-            this.btnTrigonometria.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrigonometria.Location = new System.Drawing.Point(6, 194);
-            this.btnTrigonometria.Name = "btnTrigonometria";
-            this.btnTrigonometria.Size = new System.Drawing.Size(89, 17);
-            this.btnTrigonometria.TabIndex = 114;
-            this.btnTrigonometria.TabStop = true;
-            this.btnTrigonometria.Text = "Trigonometria";
-            this.btnTrigonometria.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 244);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 19);
+            this.label6.TabIndex = 116;
+            this.label6.Text = "Elipse";
             // 
             // btnPontoMedioCircunferencia
             // 
@@ -182,6 +175,39 @@
             this.btnPontoMedioCircunferencia.Text = "Ponto Médio";
             this.btnPontoMedioCircunferencia.UseVisualStyleBackColor = true;
             // 
+            // btnTrigonometria
+            // 
+            this.btnTrigonometria.AutoSize = true;
+            this.btnTrigonometria.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrigonometria.Location = new System.Drawing.Point(6, 194);
+            this.btnTrigonometria.Name = "btnTrigonometria";
+            this.btnTrigonometria.Size = new System.Drawing.Size(89, 17);
+            this.btnTrigonometria.TabIndex = 114;
+            this.btnTrigonometria.TabStop = true;
+            this.btnTrigonometria.Text = "Trigonometria";
+            this.btnTrigonometria.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1, 149);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 19);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Circunferência";
+            // 
+            // btnPontoMedioRetas
+            // 
+            this.btnPontoMedioRetas.AutoSize = true;
+            this.btnPontoMedioRetas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPontoMedioRetas.Location = new System.Drawing.Point(5, 125);
+            this.btnPontoMedioRetas.Name = "btnPontoMedioRetas";
+            this.btnPontoMedioRetas.Size = new System.Drawing.Size(85, 17);
+            this.btnPontoMedioRetas.TabIndex = 3;
+            this.btnPontoMedioRetas.TabStop = true;
+            this.btnPontoMedioRetas.Text = "Ponto Médio";
+            this.btnPontoMedioRetas.UseVisualStyleBackColor = true;
+            // 
             // btnEquacaoCircunferencia
             // 
             this.btnEquacaoCircunferencia.AutoSize = true;
@@ -194,17 +220,38 @@
             this.btnEquacaoCircunferencia.Text = "Equação Circunferência";
             this.btnEquacaoCircunferencia.UseVisualStyleBackColor = true;
             // 
-            // btnPontoMedioElipse
+            // btnEquacaoReta
             // 
-            this.btnPontoMedioElipse.AutoSize = true;
-            this.btnPontoMedioElipse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPontoMedioElipse.Location = new System.Drawing.Point(6, 267);
-            this.btnPontoMedioElipse.Name = "btnPontoMedioElipse";
-            this.btnPontoMedioElipse.Size = new System.Drawing.Size(85, 17);
-            this.btnPontoMedioElipse.TabIndex = 1;
-            this.btnPontoMedioElipse.TabStop = true;
-            this.btnPontoMedioElipse.Text = "Ponto Médio";
-            this.btnPontoMedioElipse.UseVisualStyleBackColor = true;
+            this.btnEquacaoReta.AutoSize = true;
+            this.btnEquacaoReta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEquacaoReta.Location = new System.Drawing.Point(5, 79);
+            this.btnEquacaoReta.Name = "btnEquacaoReta";
+            this.btnEquacaoReta.Size = new System.Drawing.Size(109, 17);
+            this.btnEquacaoReta.TabIndex = 1;
+            this.btnEquacaoReta.TabStop = true;
+            this.btnEquacaoReta.Text = "Equação da Reta";
+            this.btnEquacaoReta.UseVisualStyleBackColor = true;
+            // 
+            // btnDDA
+            // 
+            this.btnDDA.AutoSize = true;
+            this.btnDDA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDDA.Location = new System.Drawing.Point(5, 102);
+            this.btnDDA.Name = "btnDDA";
+            this.btnDDA.Size = new System.Drawing.Size(48, 17);
+            this.btnDDA.TabIndex = 2;
+            this.btnDDA.TabStop = true;
+            this.btnDDA.Text = "DDA";
+            this.btnDDA.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 19);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Retas";
             // 
             // pictBoxImg1
             // 
@@ -262,18 +309,6 @@
             this.btnAddPoligono.UseVisualStyleBackColor = true;
             this.btnAddPoligono.Click += new System.EventHandler(this.btnAddPoligono_Click);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(3, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Excluir";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.Red;
@@ -286,6 +321,40 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Visible = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(3, 241);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Excluir";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            // 
+            // lbVertices
+            // 
+            this.lbVertices.AutoSize = true;
+            this.lbVertices.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVertices.Location = new System.Drawing.Point(3, 267);
+            this.lbVertices.Name = "lbVertices";
+            this.lbVertices.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.lbVertices.Size = new System.Drawing.Size(67, 30);
+            this.lbVertices.TabIndex = 7;
+            this.lbVertices.Text = "Vertices";
+            this.lbVertices.Visible = false;
+            // 
+            // listViewVertices
+            // 
+            this.listViewVertices.HideSelection = false;
+            this.listViewVertices.Location = new System.Drawing.Point(3, 300);
+            this.listViewVertices.Name = "listViewVertices";
+            this.listViewVertices.Size = new System.Drawing.Size(159, 154);
+            this.listViewVertices.TabIndex = 8;
+            this.listViewVertices.UseCompatibleStateImageBehavior = false;
+            this.listViewVertices.Visible = false;
             // 
             // groupBox1
             // 
@@ -609,118 +678,46 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.radioButton2);
-            this.groupBox5.Controls.Add(this.radioButton1);
+            this.groupBox5.Controls.Add(this.checkBox2);
+            this.groupBox5.Controls.Add(this.checkBox1);
             this.groupBox5.Controls.Add(this.button6);
             this.groupBox5.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(3, 409);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(134, 103);
+            this.groupBox5.Size = new System.Drawing.Size(134, 106);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Reflexão";
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(6, 47);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.checkBox2.Size = new System.Drawing.Size(69, 20);
+            this.checkBox2.TabIndex = 7;
+            this.checkBox2.Text = "Eixo Y";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 21);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(70, 20);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Eixo X";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(6, 71);
+            this.button6.Location = new System.Drawing.Point(6, 73);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(115, 26);
             this.button6.TabIndex = 5;
             this.button6.Text = "Aplicar";
             this.button6.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(6, 44);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(55, 17);
-            this.radioButton1.TabIndex = 114;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Eixo Y";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(6, 21);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(55, 17);
-            this.radioButton2.TabIndex = 115;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Eixo X";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // lbVertices
-            // 
-            this.lbVertices.AutoSize = true;
-            this.lbVertices.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVertices.Location = new System.Drawing.Point(3, 267);
-            this.lbVertices.Name = "lbVertices";
-            this.lbVertices.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.lbVertices.Size = new System.Drawing.Size(67, 30);
-            this.lbVertices.TabIndex = 7;
-            this.lbVertices.Text = "Vertices";
-            this.lbVertices.Visible = false;
-            // 
-            // listViewVertices
-            // 
-            this.listViewVertices.HideSelection = false;
-            this.listViewVertices.Location = new System.Drawing.Point(3, 300);
-            this.listViewVertices.Name = "listViewVertices";
-            this.listViewVertices.Size = new System.Drawing.Size(159, 154);
-            this.listViewVertices.TabIndex = 8;
-            this.listViewVertices.UseCompatibleStateImageBehavior = false;
-            this.listViewVertices.Visible = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnPontoMedioElipse);
-            this.groupBox6.Controls.Add(this.label6);
-            this.groupBox6.Controls.Add(this.btnPontoMedioCircunferencia);
-            this.groupBox6.Controls.Add(this.btnTrigonometria);
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.btnPontoMedioRetas);
-            this.groupBox6.Controls.Add(this.btnEquacaoCircunferencia);
-            this.groupBox6.Controls.Add(this.btnEquacaoReta);
-            this.groupBox6.Controls.Add(this.btnDDA);
-            this.groupBox6.Controls.Add(this.label2);
-            this.groupBox6.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(11, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(150, 335);
-            this.groupBox6.TabIndex = 121;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Primitivas Gráficas";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 19);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Retas";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 149);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 19);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Circunferência";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 244);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 19);
-            this.label6.TabIndex = 116;
-            this.label6.Text = "Elipse";
             // 
             // frmPrincipal
             // 
@@ -735,6 +732,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário Principal";
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).EndInit();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
@@ -757,8 +756,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -808,14 +805,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label lbVertices;
         private System.Windows.Forms.ListView listViewVertices;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

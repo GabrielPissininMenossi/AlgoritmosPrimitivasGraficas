@@ -48,6 +48,5 @@ namespace ProcessamentoImagens.classes
         {
             return Fim.Y;
         }
-
     }
 }
