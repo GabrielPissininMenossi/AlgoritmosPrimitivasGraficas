@@ -35,24 +35,9 @@ namespace ProcessamentoImagens.classes.EdgeTable
             return aux;
         }
 
-        // public void Add(NoEdgeTable no)
-        // {
-        //     //se lista nulla, adiciona o único nó
-        //     if (et == null)
-        //     {
-        //         et = no;
-        //     }
-        //     else //insere no final
-        //     {
-        //         NoEdgeTable aux = et;
-        //         while (aux.prox != null)
-        //             aux = aux.prox;
-        //         aux.prox = no;
-        //     }
-        // }
         public void Add(NoEdgeTable no)
         {
-            no.prox = null; // 🔥 garante que é um nó isolado
+            no.prox = null; 
 
             if (et == null)
             {

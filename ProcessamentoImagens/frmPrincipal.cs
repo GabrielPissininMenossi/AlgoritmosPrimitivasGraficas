@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-
 namespace ProcessamentoImagens
 {
     public partial class frmPrincipal : Form
@@ -411,7 +410,6 @@ namespace ProcessamentoImagens
                 lbVertices.Visible = false;
                 listViewVertices.Visible = false;
                 btnPreencherPoligono.Visible = false;
-                DesativarBotoesTransformacoes2D();
                 Desenhar();
                 return;
             }
@@ -424,7 +422,6 @@ namespace ProcessamentoImagens
             //aparece o botões: exclusão e transformações
             btnExcluirPoligono.Visible = true;
             btnPreencherPoligono.Visible = true;
-            AtivarBotoesTransformacoes2D();
 
             //limpa o listView dos vértices
             listViewVertices.Items.Clear();
@@ -461,6 +458,7 @@ namespace ProcessamentoImagens
                 Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
                 DesenharPoligonoModificado(poligono, Color.Red.R, Color.Red.G, Color.Red.B);
+                DesativarBotoesTransformacoes2D();
                 return;
             }
 
@@ -468,6 +466,8 @@ namespace ProcessamentoImagens
 
             // Recupera seu objeto real
             Point p = (Point)item.Tag;
+
+            AtivarBotoesTransformacoes2D();
 
             //pinta o vértice em questão selecionado
             Filtros.ImagemBranca(imageBitmap);
@@ -560,6 +560,7 @@ namespace ProcessamentoImagens
                 ListViewItem itemPoligono = listViewPoligono.SelectedItems[0];
                 Poligono poligono = (Poligono)itemPoligono.Tag;
                 AplicarEscala(poligono);
+                Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
             }
         }
@@ -573,6 +574,7 @@ namespace ProcessamentoImagens
                 ListViewItem itemPoligono = listViewPoligono.SelectedItems[0];
                 Poligono poligono = (Poligono)itemPoligono.Tag;
                 AplicarTranslacao(poligono);
+                Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
             }
         }
@@ -585,6 +587,7 @@ namespace ProcessamentoImagens
                 ListViewItem itemPoligono = listViewPoligono.SelectedItems[0];
                 Poligono poligono = (Poligono)itemPoligono.Tag;
                 AplicarRotacao(poligono);
+                Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
             }
         }
@@ -597,6 +600,7 @@ namespace ProcessamentoImagens
             {
                 ListViewItem itemPoligono = listViewPoligono.SelectedItems[0];
                 Poligono poligono = (Poligono)itemPoligono.Tag;
+                Filtros.ImagemBranca(imageBitmap);
                 AplicarCisalhamento(poligono);
                 Desenhar();
             }
@@ -609,6 +613,7 @@ namespace ProcessamentoImagens
                 ListViewItem itemPoligono = listViewPoligono.SelectedItems[0];
                 Poligono poligono = (Poligono)itemPoligono.Tag;
                 AplicarReflexao(poligono);
+                Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
             }
         }
@@ -625,6 +630,7 @@ namespace ProcessamentoImagens
                 AplicarRotacao(p);
                 AplicarCisalhamento(p);
                 AplicarReflexao(p);
+                Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
             }
         }
@@ -633,7 +639,10 @@ namespace ProcessamentoImagens
         {
             double escalaX = (double)numUpDownEscalaX.Value;
             double escalaY = (double)numUpDownEscalaY.Value;
-            p.MultiplicaMatrizEscala(escalaX, escalaY);
+            //Recuperar o vértice selecionado
+            ListViewItem item = listViewVertices.SelectedItems[0];
+            Point vertice = (Point)item.Tag;
+            p.MultiplicaMatrizEscala(escalaX, escalaY, vertice);
         }
 
         private void AplicarTranslacao(Poligono p)
@@ -646,14 +655,20 @@ namespace ProcessamentoImagens
         private void AplicarRotacao(Poligono p)
         {
             int angulo = (int)numUpDownGrauRotacao.Value;
-            p.MultiplicaMatrizRotacao(angulo);
+            //Recuperar o vértice selecionado
+            ListViewItem item = listViewVertices.SelectedItems[0];
+            Point vertice = (Point)item.Tag;
+            p.MultiplicaMatrizRotacao(angulo, vertice);
         }
 
         private void AplicarCisalhamento(Poligono p)
         {
             double shx = (double)numUpDownXCisalhamento.Value;
             double shy = (double)numUpDownYCisalhamento.Value;
-            p.MultiplicaMatrizCisalhamento(shx, shy);
+            //Recuperar o vértice selecionado
+            ListViewItem item = listViewVertices.SelectedItems[0];
+            Point vertice = (Point)item.Tag;
+            p.MultiplicaMatrizCisalhamento(shx, shy, vertice);
         }
 
         private void AplicarReflexao(Poligono p)
@@ -661,7 +676,12 @@ namespace ProcessamentoImagens
             bool eixoX = checkBoxXReflexao.Checked;
             bool eixoY = checkBoxYReflexao.Checked;
             if(eixoX || eixoY)
-                p.MultiplicaMatrizReflexao(eixoX, eixoY);
+            {
+                //Recuperar o vértice selecionado
+                ListViewItem item = listViewVertices.SelectedItems[0];
+                Point vertice = (Point)item.Tag;
+                p.MultiplicaMatrizReflexao(eixoX, eixoY, vertice);
+            }
         }
 
         private void btnExcluirPoligono_Click(object sender, EventArgs e)

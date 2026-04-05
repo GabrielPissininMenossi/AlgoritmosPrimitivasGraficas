@@ -52,8 +52,7 @@ namespace ProcessamentoImagens
             int width = imgBitmap.Width;
             int height = imgBitmap.Height;
 
-            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height),
-                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            BitmapData img = imgBitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 
             // raio da circunferência: distância entre o centro (x1,y1) e um ponto da borda (x2,y2)
             // R = Raiz( (x2 - x1)^2 + (y2 - y1)^2 )
@@ -70,7 +69,6 @@ namespace ProcessamentoImagens
                 // Percorre o ângulo α de 0 até 2*PI (360° em radianos)
                 for (double t = 0; t < 2 * Math.PI; t += passo)
                 {
-
                     // y = R * sen(α) e x = R * cos(α)
                     //transformam o ângulo α em coordenadas, cos e sen vão de - 1 a 1
                     int x = (int)(raio * Math.Cos(t));
@@ -107,7 +105,6 @@ namespace ProcessamentoImagens
                     if (d < 0)
                     {
                         d = d + 2 * x + 3;
-
                     }
                     else
                     {

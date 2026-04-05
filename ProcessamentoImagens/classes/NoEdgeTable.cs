@@ -29,18 +29,6 @@ namespace ProcessamentoImagens.classes.EdgeTable
             prox = no;
         }
 
-        // public void CalcularIncremento(Reta r)
-        // {
-        //     double dx = r.GetXMax()-r.GetXMin();
-        //     double dy = r.GetYMax()-r.GetYMin();
-
-        //     if(dy == 0 || dx == 0)
-        //         inc = 0;
-        //     else
-        //     {
-        //         inc = dx/dy;
-        //     }
-        // }
         public void CalcularIncremento(Reta r)
         {
             double dx = r.GetFimX() - r.GetIniX();

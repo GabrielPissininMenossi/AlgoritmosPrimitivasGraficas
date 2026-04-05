@@ -138,25 +138,6 @@ namespace ProcessamentoImagens.classes
             return arestasTransformadas;
         }
 
-        public Point MultiplicaVerticeMatriz(Point vertice)
-        {
-            double valorX=0, valorY=0, valorZ=0;
-
-            valorX += MatrizTransformacao[0,0]*vertice.X;
-            valorX += MatrizTransformacao[0,1]*vertice.Y;
-            valorX += MatrizTransformacao[0,2]*1;
-
-            valorY += MatrizTransformacao[1,0]*vertice.X;
-            valorY += MatrizTransformacao[1,1]*vertice.Y;
-            valorY += MatrizTransformacao[1,2]*1;
-
-            valorZ += MatrizTransformacao[2,0]*vertice.X;
-            valorZ += MatrizTransformacao[2,1]*vertice.Y;
-            valorZ += MatrizTransformacao[2,2]*1;
-
-            return new Point((int)valorX, (int)valorY);
-        }
-
         public List<Point> GetVerticesOriginais()
         {
             List<Point> vertices = new List<Point>();
@@ -178,7 +159,49 @@ namespace ProcessamentoImagens.classes
             return vertices;
         }
 
-        public void MultiplicaMatrizEscala(double escalaX, double escalaY)
+        private void MultiplicaMatrizTransformacao(double[,] matriz, double[,] resultado)
+        {
+            for (int l = 0; l < 3; l++)
+            {
+                for (int c = 0; c < 3; c++)
+                {
+                    double valor = 0;
+                    for (int i = 0; i < 3; i++)
+                        valor += MatrizTransformacao[l, i] * matriz[i, c];
+
+                    //setar na matriz de resultado
+                    resultado[l, c] = valor;
+                }
+            }
+        }
+
+        private void SetarTodaMatrizTransformacao(double[,] resultado)
+        {
+            for(int i=0; i<3; i++)
+                for(int j=0; j<3; j++)
+                    SetMatrizXY(i, j, resultado[i,j]);
+        }
+
+        public Point MultiplicaVerticeMatriz(Point vertice)
+        {
+            double valorX=0, valorY=0, valorZ=0;
+
+            valorX += MatrizTransformacao[0,0]*vertice.X;
+            valorX += MatrizTransformacao[0,1]*vertice.Y;
+            valorX += MatrizTransformacao[0,2]*1;
+
+            valorY += MatrizTransformacao[1,0]*vertice.X;
+            valorY += MatrizTransformacao[1,1]*vertice.Y;
+            valorY += MatrizTransformacao[1,2]*1;
+
+            valorZ += MatrizTransformacao[2,0]*vertice.X;
+            valorZ += MatrizTransformacao[2,1]*vertice.Y;
+            valorZ += MatrizTransformacao[2,2]*1;
+
+            return new Point((int)valorX, (int)valorY);
+        }
+
+        public void MultiplicaMatrizEscala(double escalaX, double escalaY, Point vertice)
         {
             /*
             sx -> escalaX
@@ -192,22 +215,15 @@ namespace ProcessamentoImagens.classes
                 { escalaX, 0, 0 },
                 { 0, escalaY, 0 },
                 { 0, 0, 1 } };
-            for (int l = 0; l < 3; l++)
-            {
-                for (int c = 0; c < 3; c++)
-                {
-                    double valor = 0;
-                    for (int i = 0; i < 3; i++)
-                        valor += MatrizTransformacao[l, i] * matrizEscala[i, c];
+            
+            //Aplicar a translação -> mandar para a coordenada (0,0)
+            MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
-                    //setar na matriz de resultado
-                    resultado[l, c] = valor;
-                }
-            }
+            MultiplicaMatrizTransformacao(matrizEscala, resultado);
+            SetarTodaMatrizTransformacao(resultado);
 
-            for(int i=0; i<3; i++)
-                for(int j=0; j<3; j++)
-                    SetMatrizXY(i, j, resultado[i,j]);
+            //Aplicar a translação -> mandar para a coordenada (origemX, origemY)
+            MultiplicaMatrizTranslacao(-vertice.X, -vertice.Y);
         }
 
         public void MultiplicaMatrizTranslacao(double tX, double tY)
@@ -219,25 +235,11 @@ namespace ProcessamentoImagens.classes
                 { 0, 0, 1 }
             };
 
-            for (int l = 0; l < 3; l++)
-            {
-                for (int c = 0; c < 3; c++)
-                {
-                    double valor = 0;
-                    for (int i = 0; i < 3; i++)
-                        valor += MatrizTransformacao[l, i] * matrizTranslacao[i, c];
-
-                    //setar na matriz de resultado
-                    resultado[l, c] = valor;
-                }
-            }
-
-            for(int i=0; i<3; i++)
-                for(int j=0; j<3; j++)
-                    SetMatrizXY(i, j, resultado[i,j]);
+            MultiplicaMatrizTransformacao(matrizTranslacao, resultado);
+            SetarTodaMatrizTransformacao(resultado);
         }
 
-        public void MultiplicaMatrizCisalhamento(double cisalhamentoX, double cisalhamentoY)
+        public void MultiplicaMatrizCisalhamento(double cisalhamentoX, double cisalhamentoY, Point vertice)
         {
             /*
             b -> cisalhamentoX
@@ -249,26 +251,20 @@ namespace ProcessamentoImagens.classes
                 { cisalhamentoY, 1, 0 },
                 { 0, 0, 1 }
             };
-            for (int l = 0; l < 3; l++)
-            {
-                for (int c = 0; c < 3; c++)
-                {
-                    double valor = 0;
-                    for (int i = 0; i < 3; i++)
-                        valor += MatrizTransformacao[l, i] * matrizCisalhamento[i, c];
 
-                    //setar na matriz de resultado
-                    resultado[l, c] = valor;
-                }
-            }
+            //Aplicar a translação -> mandar para a coordenada (0,0)
+            MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
-            for(int i=0; i<3; i++)
-                for(int j=0; j<3; j++)
-                    SetMatrizXY(i, j, resultado[i,j]);
+            MultiplicaMatrizTransformacao(matrizCisalhamento, resultado);
+            SetarTodaMatrizTransformacao(resultado);
+
+            //Aplicar a translação -> mandar para a coordenada (origemX, origemY)
+            MultiplicaMatrizTranslacao(-vertice.X, -vertice.Y);
         }
 
-        public void MultiplicaMatrizReflexao(bool reflexaoX, bool reflexaoY)
-        {            /*
+        public void MultiplicaMatrizReflexao(bool reflexaoX, bool reflexaoY, Point vertice)
+        {
+            /*
             em Y : -1  0  0   
                     0  1  0
                     0  0  1
@@ -294,55 +290,40 @@ namespace ProcessamentoImagens.classes
             else if (reflexaoY)
                 matrizReflexao[0,0] = -1;
 
-            for (int l = 0; l < 3; l++)
-            {
-                for (int c = 0; c < 3; c++)
-                {
-                    double valor = 0;
-                    for (int i = 0; i < 3; i++)
-                        valor += MatrizTransformacao[l, i] * matrizReflexao[i, c];
+            //Aplicar a translação -> mandar para a coordenada (0,0)
+            MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
-                    //setar na matriz de resultado
-                    resultado[l, c] = valor;
-                }
-            }
-
-            for(int i=0; i<3; i++)
-                for(int j=0; j<3; j++)
-                    SetMatrizXY(i, j, resultado[i,j]);
+            MultiplicaMatrizTransformacao(matrizReflexao, resultado);
+            SetarTodaMatrizTransformacao(resultado);
+            
+            //voltar para a posição original, porém refletido
+            MultiplicaMatrizTranslacao(-vertice.X, -vertice.Y);
         }
 
-        public void MultiplicaMatrizRotacao(int grau)
+        public void MultiplicaMatrizRotacao(int grau, Point vertice)
         {
             /*
             cos()  -sen()  0
             sen()  cos()   0
             0       0      1
             */
-            double cosseno = Math.Cos(grau * Math.PI/180);
-            double seno = Math.Sin(grau * Math.PI/180);
+            double cosseno = Math.Cos(grau * Math.PI/180); //quando passado em radianos, funciona normalmente
+            double seno = Math.Sin(grau * Math.PI/180);    //quando passado em radianos, funciona normalmente
             double[,] resultado = new double[3, 3];
             double[,] matrizRotacao = new double[3, 3] {
                 { cosseno, -seno, 0 },
                 { seno, cosseno, 0 },
                 { 0, 0, 1 }
             };
-            for (int l = 0; l < 3; l++)
-            {
-                for (int c = 0; c < 3; c++)
-                {
-                    double valor = 0;
-                    for (int i = 0; i < 3; i++)
-                        valor += MatrizTransformacao[l, i] * matrizRotacao[i, c];
+            
+            //Aplicar a translação -> mandar para a coordenada (0,0)
+            MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
-                    //setar na matriz de resultado
-                    resultado[l, c] = valor;
-                }
-            }
+            MultiplicaMatrizTransformacao(matrizRotacao, resultado);
+            SetarTodaMatrizTransformacao(resultado);
 
-            for(int i=0; i<3; i++)
-                for(int j=0; j<3; j++)
-                    SetMatrizXY(i, j, resultado[i,j]);
+            //Aplicar a translação -> mandar para a coordenada (origemX, origemY)
+            MultiplicaMatrizTranslacao(-vertice.X, -vertice.Y);
         }
     }
 }
