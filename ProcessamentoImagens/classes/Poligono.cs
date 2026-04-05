@@ -18,11 +18,16 @@ namespace ProcessamentoImagens.classes
             GerarMatrizIdentidade();
         }
 
-        public Reta GetAresta(int pos)
+        public Reta GetArestaAt(int pos)
         {
             if (pos > -1 && pos < Arestas.Count)
                 return Arestas[pos];
             return null;
+        }
+
+        public List<Reta> GetArestas()
+        {
+            return Arestas;
         }
 
         public void AddAresta(Reta r)
@@ -42,17 +47,17 @@ namespace ProcessamentoImagens.classes
 
         private void GerarMatrizIdentidade()
         {
-            for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++)
-                    if (i == j)
-                        MatrizTransformacao[i, j] = 1;
-                    else
-                        MatrizTransformacao[i, j] = 0;
             /*
             1 0 0
             0 1 0
             0 0 1
             */
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (i == j)
+                        MatrizTransformacao[i, j] = 1;
+                    else
+                        MatrizTransformacao[i, j] = 0; 
         }
 
         public Double? GetMatrizXY(int x, int y)
@@ -201,14 +206,30 @@ namespace ProcessamentoImagens.classes
             return new Point((int)valorX, (int)valorY);
         }
 
+        public void MultiplicaMatrizTranslacao(double dx, double dy)
+        {
+            /*
+                1 0 dx -> dx -> translação em relação ao eixo x
+                0 1 dy -> dy -> translação em relação ao eixo y
+                0 0 1
+            */
+            double[,] resultado = new double[3, 3];
+            double[,] matrizTranslacao = new double[3, 3] {
+                { 1, 0, dx },
+                { 0, 1, dy },
+                { 0, 0, 1 }
+            };
+
+            MultiplicaMatrizTransformacao(matrizTranslacao, resultado);
+            SetarTodaMatrizTransformacao(resultado);
+        }
+
         public void MultiplicaMatrizEscala(double escalaX, double escalaY, Point vertice)
         {
             /*
-            sx -> escalaX
-            sy -> escalaY
-            sx 0  0
-            0  sy 0
-            0  0  1
+                sx 0  0 -> sx -> escalaX
+                0  sy 0 -> sy -> escalaY
+                0  0  1
             */
             double[,] resultado = new double[3, 3];
             double[,] matrizEscala = new double[3, 3] {
@@ -218,7 +239,8 @@ namespace ProcessamentoImagens.classes
             
             //Aplicar a translação -> mandar para a coordenada (0,0)
             MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
-
+            
+            //Aplicar a transformação em questão -> rotação
             MultiplicaMatrizTransformacao(matrizEscala, resultado);
             SetarTodaMatrizTransformacao(resultado);
 
@@ -226,24 +248,12 @@ namespace ProcessamentoImagens.classes
             MultiplicaMatrizTranslacao(-vertice.X, -vertice.Y);
         }
 
-        public void MultiplicaMatrizTranslacao(double tX, double tY)
-        {
-            double[,] resultado = new double[3, 3];
-            double[,] matrizTranslacao = new double[3, 3] {
-                { 1, 0, tX },
-                { 0, 1, tY },
-                { 0, 0, 1 }
-            };
-
-            MultiplicaMatrizTransformacao(matrizTranslacao, resultado);
-            SetarTodaMatrizTransformacao(resultado);
-        }
-
         public void MultiplicaMatrizCisalhamento(double cisalhamentoX, double cisalhamentoY, Point vertice)
         {
             /*
-            b -> cisalhamentoX
-            a -> cisalhamentoY
+                1 b 0 -> b -> cisalhamentoX
+                a 1 0 -> a -> cisalhamentoY
+                0 0 1
             */
             double[,] resultado = new double[3, 3];
             double[,] matrizCisalhamento = new double[3, 3] {
@@ -255,6 +265,7 @@ namespace ProcessamentoImagens.classes
             //Aplicar a translação -> mandar para a coordenada (0,0)
             MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
+            //Aplicar a transformação em questão -> cisalhamento
             MultiplicaMatrizTransformacao(matrizCisalhamento, resultado);
             SetarTodaMatrizTransformacao(resultado);
 
@@ -293,6 +304,7 @@ namespace ProcessamentoImagens.classes
             //Aplicar a translação -> mandar para a coordenada (0,0)
             MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
+            //Aplicar a transformação em questão -> reflexão
             MultiplicaMatrizTransformacao(matrizReflexao, resultado);
             SetarTodaMatrizTransformacao(resultado);
             
@@ -303,9 +315,9 @@ namespace ProcessamentoImagens.classes
         public void MultiplicaMatrizRotacao(int grau, Point vertice)
         {
             /*
-            cos()  -sen()  0
-            sen()  cos()   0
-            0       0      1
+                cos(grau)  -sen(grau)     0
+                sen(grau)  cos(grau)      0
+                0             0           1
             */
             double cosseno = Math.Cos(grau * Math.PI/180); //quando passado em radianos, funciona normalmente
             double seno = Math.Sin(grau * Math.PI/180);    //quando passado em radianos, funciona normalmente
@@ -319,6 +331,7 @@ namespace ProcessamentoImagens.classes
             //Aplicar a translação -> mandar para a coordenada (0,0)
             MultiplicaMatrizTranslacao(vertice.X, vertice.Y);
 
+            //Aplicar a transformação em questão -> rotação
             MultiplicaMatrizTransformacao(matrizRotacao, resultado);
             SetarTodaMatrizTransformacao(resultado);
 

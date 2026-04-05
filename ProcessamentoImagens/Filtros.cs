@@ -329,8 +329,6 @@ namespace ProcessamentoImagens
                 byte* origem = (byte*)img.Scan0.ToPointer();
                 byte* pixel;
 
-                // while (X < X2) isso só funciona se a linha vai pra direita
-
                 for (I = 0; I <= Length; I++)
                 {
                     int px = (int)Math.Round(X);
@@ -486,54 +484,7 @@ namespace ProcessamentoImagens
         }
 
         /*
-         * Codificação de um MÉTODO para deixar a IMAGEM INTEIRAMENTE na ESCALA DE CINZA.
-         * **/
-        public static void Convert_to_grayDMA(Bitmap imageBitmapSrc, Bitmap imageBitmapDest)
-        {
-            int width = imageBitmapSrc.Width;
-            int height = imageBitmapSrc.Height;
-            int pixelSize = 3;
-            Int32 gs;
-
-            //lock dados bitmap origem
-            BitmapData bitmapDataSrc = imageBitmapSrc.LockBits(new Rectangle(0, 0, width, height),
-                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-            //lock dados bitmap destino
-            BitmapData bitmapDataDst = imageBitmapDest.LockBits(new Rectangle(0, 0, width, height),
-                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-            int padding = bitmapDataSrc.Stride - (width * pixelSize);
-
-            unsafe
-            {
-                byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
-                byte* dst = (byte*)bitmapDataDst.Scan0.ToPointer();
-
-                int r, g, b;
-                for (int y = 0; y < height; y++)
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-                        b = *(src++); //está armazenado dessa forma: b g r 
-                        g = *(src++);
-                        r = *(src++);
-                        gs = (Int32)(r * 0.2990 + g * 0.5870 + b * 0.1140);
-                        *(dst++) = (byte)gs;
-                        *(dst++) = (byte)gs;
-                        *(dst++) = (byte)gs;
-                    }
-                    src += padding;
-                    dst += padding;
-                }
-            }
-            //unlock imagem origem
-            imageBitmapSrc.UnlockBits(bitmapDataSrc);
-            //unlock imagem destino
-            imageBitmapDest.UnlockBits(bitmapDataDst);
-        }
-
-        /*
-         * Codificação de um MÉTODO para PINTAR UM PIXEL na ESCALA DE CINZA.
+         * Codificação de um MÉTODO para PINTAR UM PIXEL.
          * **/
         unsafe private static void PintaPixel(byte* src, int stride, int width, int height, int x, int y, int R, int G, int B)
         {
@@ -641,13 +592,10 @@ namespace ProcessamentoImagens
                     atual.Y = coordY[coordY.Count - 1];
                     coordY.RemoveAt(coordY.Count - 1);
 
-
                     aux = src + atual.Y * stride + atual.X * pixelSize;
 
                     if (aux[0] == 255 && aux[1] == 255 && aux[2] == 255)
                     {
-                        //PintaPixel(src, stride, width, height, atual.X, atual.Y, Color.Azure.R, Color.Azure.G, Color.Azure.B);
-                        // pinta direto
                         aux[0] = Color.Azure.B;
                         aux[1] = Color.Azure.G;
                         aux[2] = Color.Azure.R;
@@ -670,7 +618,6 @@ namespace ProcessamentoImagens
                     }
                 }
             }
-
             imageBitmap.UnlockBits(data);
         }
 
@@ -696,7 +643,8 @@ namespace ProcessamentoImagens
                 EdgeTable aet = new EdgeTable();
                 while (!IsVectorEdgeEmpty(et, et.Length) || aet.Count() > 0)
                 {
-                    if (y >= 0 && y < et.Length && et[y] != null)
+                    //pegar todos os elementos da posição [y]
+                    if (y > -1 && y < et.Length && et[y] != null)
                     {
                         NoEdgeTable atual = et[y].GetNoEdgeTableAt(0);
 

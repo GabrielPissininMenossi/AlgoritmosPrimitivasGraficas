@@ -40,9 +40,7 @@ namespace ProcessamentoImagens.classes.EdgeTable
             no.prox = null; 
 
             if (et == null)
-            {
                 et = no;
-            }
             else
             {
                 NoEdgeTable aux = et;
@@ -111,12 +109,7 @@ namespace ProcessamentoImagens.classes.EdgeTable
                 j = i.prox;
                 while (j != null)
                 {
-                    // if (j.xMin < menor)
-                    // {
-                    //     menor = j.xMin;
-                    //     posMenor = j;
-                    // }
-                    
+                    //ordena pela chave "xMin" mas no caso de empate utiliza o "inc"
                     if (j.xMin < menor || (j.xMin == menor && j.inc < posMenor.inc))
                     {
                         menor = j.xMin;

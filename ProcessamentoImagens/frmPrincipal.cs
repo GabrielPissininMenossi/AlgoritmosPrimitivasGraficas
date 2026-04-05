@@ -230,6 +230,7 @@ namespace ProcessamentoImagens
                     Filtros.ElipsePontoMedio(imageBitmap, posInicial.X, posInicial.Y, posFinalElipse.X, posFinalElipse.Y, posTempFinal.X, posTempFinal.Y, 180, 180, 180); //Circulo temporário
                     Filtros.Bresenham(imageBitmap, posInicial.X, posInicial.Y, posTempFinal.X, posTempFinal.Y, 180, 180, 180); //aresta temporária
                 }
+
                 if (flag)
                     Desenhar();
             }
@@ -255,7 +256,7 @@ namespace ProcessamentoImagens
                 }
                 else if (btnEquacaoReta.Checked || btnDDA.Checked || btnPontoMedioRetas.Checked)
                 {
-                    if (!addReta)//não tá ativado é primeiro ponto
+                    if (!addReta)//não tá ativado, é primeiro ponto
                     {
                         addReta = true;
                         posInicial = e.Location;
@@ -265,17 +266,11 @@ namespace ProcessamentoImagens
                     {
                         posFinal = e.Location;
                         if (btnEquacaoReta.Checked)
-                        {
                             Filtros.EquacaoReta(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
-                        }
                         else if (btnDDA.Checked)
-                        {
                             Filtros.DDA(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
-                        }
                         else if (btnPontoMedioRetas.Checked)
-                        {
                             Filtros.Bresenham(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y, 0, 0, 0);
-                        }
 
                         Point iniTemp = new Point(posInicial.X, posInicial.Y);
                         Point fimTemp = new Point(posFinal.X, posFinal.Y);
@@ -290,7 +285,7 @@ namespace ProcessamentoImagens
                 }
                 else if (btnEquacaoCircunferencia.Checked || btnTrigonometria.Checked || btnPontoMedioCircunferencia.Checked)
                 {
-                    if (!addCirc)//não tá ativado é primeiro ponto
+                    if (!addCirc)//não tá ativado, é primeiro ponto
                     {
                         addCirc = true;
                         posInicial = e.Location;
@@ -300,17 +295,11 @@ namespace ProcessamentoImagens
                     {
                         posFinal = e.Location;
                         if (btnEquacaoCircunferencia.Checked)
-                        {
                             Filtros.CircunferenciaEquacao(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
-                        }
                         else if (btnTrigonometria.Checked)
-                        {
                             Filtros.CircunferenciaTrigonometria(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y);
-                        }
                         else if (btnPontoMedioCircunferencia.Checked)
-                        {
                             Filtros.CircunferenciaPontoMedio(imageBitmap, posInicial.X, posInicial.Y, posFinal.X, posFinal.Y, 0, 0, 0);
-                        }
 
                         Point iniTemp = new Point(posInicial.X, posInicial.Y);
                         Point fimTemp = new Point(posFinal.X, posFinal.Y);
@@ -373,7 +362,7 @@ namespace ProcessamentoImagens
                 // fechar o polígono
                 if (addPoligono && posInicial.X != -1)
                 {
-                    posFinal = poligonoTemp.GetAresta(0).GetIni(); //pega o último ponto do polígono
+                    posFinal = poligonoTemp.GetArestaAt(0).GetIni(); //pega o último ponto do polígono
                     poligonoTemp.AddAresta(new Reta(posInicial, posFinal)); //fecha o polígono
                     poligonos.Add(poligonoTemp); //adiciona o polígono à lista de polígonos
 
@@ -499,54 +488,36 @@ namespace ProcessamentoImagens
         }
         private void DesenharPoligonoAtual()
         {
-            for (int i = 0; i < poligonoTemp.CountArestas(); i++)
-            {
-                Reta r = poligonoTemp.GetAresta(i);
-                Filtros.Bresenham(imageBitmap, r.GetIniX(), r.GetIniY(), r.GetFimX(), r.GetFimY(), 180, 180, 180); //aresta temporária
-            }
+            foreach(Reta r in poligonoTemp.GetArestas())
+                Filtros.Bresenham(imageBitmap, r.GetIniX(), r.GetIniY(), r.GetFimX(), r.GetFimY(), 180, 180, 180); //aresta temporária, pintada de cinza
         }
         private void DesenharPoligonos()
         {
-            for (int i = 0; i < poligonos.Count; i++)
-            {
-                Poligono p = poligonos[i];
-                DesenharPoligonoModificado(p, 0, 0, 0); //teste
-            }
+            foreach(Poligono p in poligonos)
+                DesenharPoligonoModificado(p, 0, 0, 0);
         }
         private void DesenharPoligono(Poligono p, int R, int G, int B)
         {
-            for (int j = 0; j < p.CountArestas(); j++)
-            {
-                Reta r = p.GetAresta(j);
+            foreach(Reta r in p.GetArestas())
                 Filtros.Bresenham(imageBitmap, r.GetIniX(), r.GetIniY(), r.GetFimX(), r.GetFimY(), R, G, B);
-            }
             pictBoxImg1.Refresh();
         }
         private void DesenharPoligonoModificado(Poligono p, int R, int G, int B)
         {
             List<Reta> arestasModificadas = p.GetArestasTransformadas();
-            for (int i = 0; i < arestasModificadas.Count; i++)
-            {
-                Reta r = arestasModificadas[i];
+            foreach(Reta r in retas)
                 Filtros.Bresenham(imageBitmap, r.GetIniX(), r.GetIniY(), r.GetFimX(), r.GetFimY(), R, G, B);
-            }
             pictBoxImg1.Refresh();
         }
         private void DesenharCircunferencias()
         {
-            for (int i = 0; i < circunferencias.Count; i++)
-            {
-                Circunferencia c = circunferencias[i];
+            foreach(Circunferencia c in circunferencias)
                 Filtros.CircunferenciaPontoMedio(imageBitmap, c.GetCentroX(), c.GetCentroY(), c.GetFimRaioX(), c.GetFimRaioY(), 0, 0, 0); //pintar de preto
-            }
         }
         private void DesenharElipses()
         {
-            for (int i = 0; i < elipses.Count; i++)
-            {
-                Elipse e = elipses[i];
-                Filtros.ElipsePontoMedio(imageBitmap, e.GetOrigemX(), e.GetOrigemY(), e.GetFimEixoAX(), e.GetFimEixoAY(), e.GetFimEixoBX(), e.GetFimEixoBY(), 0, 0, 0); //pintar de preto
-            }
+            foreach(Elipse e in elipses)
+                Filtros.ElipsePontoMedio(imageBitmap, e.GetOrigemX(), e.GetOrigemY(), e.GetFimEixoAX(), e.GetFimEixoAY(), e.GetFimEixoBX(), e.GetFimEixoBY(), 0, 0, 0);
         }
 
         // =========================== AÇÔES TRANSFORMAÇÕES GEOMÉTRICAS ================================================
@@ -732,7 +703,6 @@ namespace ProcessamentoImagens
                 Poligono poligono = (Poligono)itemPoligono.Tag;
                 Desenhar();
 
-                //Filtros.PreencherPoligonoFloodFill(imageBitmap, poligono);
                 Filtros.PreencherPoligonoScanlineAET(imageBitmap, poligono);
                 DesenharPoligonoModificado(poligono, 0,0,0);
                 pictBoxImg1.Refresh();
