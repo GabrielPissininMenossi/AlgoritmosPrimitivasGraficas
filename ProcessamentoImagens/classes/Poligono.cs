@@ -110,10 +110,11 @@ namespace ProcessamentoImagens.classes
         public int GetPosAresta(Point p)
         {
             int i=0;
-            while(i<Arestas.Count && (p.X != Arestas[i].GetIniX() || p.Y != Arestas[i].GetIniY()))
+            List<Reta> arestasTransformadas = GetArestasTransformadas();
+            while(i<arestasTransformadas.Count && (p.X != arestasTransformadas[i].GetIniX() || p.Y != arestasTransformadas[i].GetIniY()))
                 i++;
                 
-            if(i<Arestas.Count && p.X == Arestas[i].GetIniX() && p.Y == Arestas[i].GetIniY())
+            if(i<arestasTransformadas.Count && p.X == arestasTransformadas[i].GetIniX() && p.Y == arestasTransformadas[i].GetIniY())
                 return i;
             return -1;
         }

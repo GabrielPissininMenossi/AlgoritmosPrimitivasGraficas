@@ -677,7 +677,7 @@ namespace ProcessamentoImagens
                         //pintar do (xMin par1) até (xMin par2)
                         int limite = (int)Math.Ceiling(par2.xMin);
                         for (int j = (int)Math.Ceiling(par1.xMin); j < limite; j++)
-                            PintaPixel(src, stride, width, height, j, y, Color.Red.R, Color.Red.G, Color.Red.B);
+                            PintaPixel(src, stride, width, height, j, y, Color.Orange.R, Color.Orange.G, Color.Orange.B);
                     }
 
                     //atualizar os xMin utilizando os incrementos

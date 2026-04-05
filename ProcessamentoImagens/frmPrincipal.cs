@@ -17,6 +17,7 @@ namespace ProcessamentoImagens
         private Point posAnt = new Point(-1, -1);
         private Elipse elipseTemp = new Elipse();
         private Poligono poligonoTemp = new Poligono();
+        private int verticeSelecionado = -1;
 
         // Listas para armazenar as primitivas gráficas
         private List<Reta> retas = new List<Reta>();
@@ -399,7 +400,10 @@ namespace ProcessamentoImagens
                 lbVertices.Visible = false;
                 listViewVertices.Visible = false;
                 btnPreencherPoligono.Visible = false;
+                DesativarBotoesTransformacoes2D();
+                Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
+                verticeSelecionado = -1; //controle do vértice que será usado como base para os cálculos de transformações
                 return;
             }
 
@@ -415,15 +419,8 @@ namespace ProcessamentoImagens
             //limpa o listView dos vértices
             listViewVertices.Items.Clear();
 
-            //aparece os vértices no listView
-            List<Point> vertices = p.GetVerticesModificados();
-            for(int i=0; i<vertices.Count; i++)
-            {
-                Point v = vertices[i];
-                ListViewItem itemVertice = new ListViewItem("(" + v.X + "," + v.Y + ")");
-                itemVertice.Tag = v;
-                listViewVertices.Items.Add(itemVertice);
-            }
+            //Atualiza lista de vértices
+            AtualizarListaVertices(p);
             
             //aparecer o listView de vertices
             listViewVertices.Visible = true;
@@ -448,6 +445,7 @@ namespace ProcessamentoImagens
                 Desenhar();
                 DesenharPoligonoModificado(poligono, Color.Red.R, Color.Red.G, Color.Red.B);
                 DesativarBotoesTransformacoes2D();
+                verticeSelecionado = -1; //controle do vértice que será usado como base para os cálculos de transformações
                 return;
             }
 
@@ -455,6 +453,7 @@ namespace ProcessamentoImagens
 
             // Recupera seu objeto real
             Point p = (Point)item.Tag;
+            verticeSelecionado = poligono.GetPosAresta(p);
 
             AtivarBotoesTransformacoes2D();
 
@@ -464,6 +463,24 @@ namespace ProcessamentoImagens
             DesenharPoligonoModificado(poligono, Color.Red.R, Color.Red.G, Color.Red.B);
             Filtros.PintaVertice(imageBitmap, p.X, p.Y, Color.Black.R, Color.Black.G, Color.Black.B);
             pictBoxImg1.Refresh();
+        }
+
+        private void AtualizarListaVertices(Poligono p)
+        {
+            listViewVertices.Items.Clear();
+            List<Point> vertices = p.GetVerticesModificados();
+            for(int i=0; i<vertices.Count; i++)
+            {
+                Point v = vertices[i];
+                ListViewItem itemVertice = new ListViewItem("(" + v.X + "," + v.Y + ")");
+                itemVertice.Tag = v;
+                listViewVertices.Items.Add(itemVertice);
+            }
+            if(verticeSelecionado > -1)
+            {
+                listViewVertices.Items[verticeSelecionado].Selected = true;
+                listViewVertices.Select(); // garante foco no ListView
+            }
         }
 
         // ================================================ DESENHAR ==================================================================================
@@ -505,7 +522,7 @@ namespace ProcessamentoImagens
         private void DesenharPoligonoModificado(Poligono p, int R, int G, int B)
         {
             List<Reta> arestasModificadas = p.GetArestasTransformadas();
-            foreach(Reta r in retas)
+            foreach(Reta r in arestasModificadas)
                 Filtros.Bresenham(imageBitmap, r.GetIniX(), r.GetIniY(), r.GetFimX(), r.GetFimY(), R, G, B);
             pictBoxImg1.Refresh();
         }
@@ -533,6 +550,8 @@ namespace ProcessamentoImagens
                 AplicarEscala(poligono);
                 Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
+                //Atualiza lista de vértices
+                AtualizarListaVertices(poligono);
             }
         }
 
@@ -547,6 +566,8 @@ namespace ProcessamentoImagens
                 AplicarTranslacao(poligono);
                 Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
+                //Atualiza lista de vértices
+                AtualizarListaVertices(poligono);
             }
         }
 
@@ -560,6 +581,8 @@ namespace ProcessamentoImagens
                 AplicarRotacao(poligono);
                 Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
+                //Atualiza lista de vértices
+                AtualizarListaVertices(poligono);
             }
         }
 
@@ -574,6 +597,8 @@ namespace ProcessamentoImagens
                 Filtros.ImagemBranca(imageBitmap);
                 AplicarCisalhamento(poligono);
                 Desenhar();
+                //Atualiza lista de vértices
+                AtualizarListaVertices(poligono);
             }
         }
 
@@ -586,6 +611,8 @@ namespace ProcessamentoImagens
                 AplicarReflexao(poligono);
                 Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
+                //Atualiza lista de vértices
+                AtualizarListaVertices(poligono);
             }
         }
 
@@ -603,6 +630,8 @@ namespace ProcessamentoImagens
                 AplicarReflexao(p);
                 Filtros.ImagemBranca(imageBitmap);
                 Desenhar();
+                //Atualiza lista de vértices
+                AtualizarListaVertices(p);
             }
         }
         
