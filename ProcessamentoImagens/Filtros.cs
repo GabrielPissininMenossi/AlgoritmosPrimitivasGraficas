@@ -641,7 +641,7 @@ namespace ProcessamentoImagens
                 int yMin = poligono.GetYMin();
                 int y = yMin;
                 EdgeTable aet = new EdgeTable();
-                while (!IsVectorEdgeEmpty(et, et.Length) || aet.Count() > 0)
+                while (!IsVectorEdgeEmpty(et, et.Length) || !aet.IsEmpty())
                 {
                     //pegar todos os elementos da posição [y]
                     if (y > -1 && y < et.Length && et[y] != null)

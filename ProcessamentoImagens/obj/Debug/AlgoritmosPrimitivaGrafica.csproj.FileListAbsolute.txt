@@ -93,3 +93,13 @@ C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\trabalho1Bi\Al
 C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\trabalho1Bi\AlgoritmosPrimitivaGrafica-19712111\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.CoreCompileInputs.cache
 C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\trabalho1Bi\AlgoritmosPrimitivaGrafica-19712111\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
 C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\trabalho1Bi\AlgoritmosPrimitivaGrafica-19712111\AlgoritmosPrimitivaGrafica\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe.config
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.pdb
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.AssemblyReference.cache
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.frmPrincipal.resources
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.Properties.Resources.resources
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.GenerateResource.cache
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\AlgoritmosPrimitivaGrafica.csproj.CoreCompileInputs.cache
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
+C:\Users\gabriel\Documents\faculdade\termo-7\CG_ComputacaoGrafica\bimestre1\trabalhos\AlgoritmosPrimitivasGraficas\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb

@@ -21,6 +21,11 @@ namespace ProcessamentoImagens.classes.EdgeTable
             et = no;
         }
 
+        public bool IsEmpty()
+        {
+            return et == null;
+        }
+
         public NoEdgeTable GetNoEdgeTableAt(int pos)
         {
             NoEdgeTable aux = et;
@@ -136,22 +141,18 @@ namespace ProcessamentoImagens.classes.EdgeTable
 
         public void RemoveAllYMax(int y)
         {
-            //remover todos os elementos da minha lista que o yMax == y
             NoEdgeTable aux = et;
-            NoEdgeTable ant = aux;
-            while (aux != null) //realizar uma varredura
+            NoEdgeTable ant = null;
+
+            while (aux != null)
             {
-                if (aux.yMax == y) //remover essa caixa
+                if (aux.yMax == y)
                 {
-                    if (aux == et)
-                    {
+                    if (ant == null)
                         et = aux.prox;
-                    }
                     else
-                    {
                         ant.prox = aux.prox;
 
-                    }
                     aux = aux.prox;
                 }
                 else
